@@ -3,6 +3,7 @@ package com.example.kianomdharmabekti.bismaoperation_guru.REST;
 import com.example.kianomdharmabekti.bismaoperation_guru.HELPER.ToStringConverter;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruData;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Interceptor;
@@ -63,6 +64,11 @@ public class RestClient {
         @Headers("Authorization: "+token)
         @POST("/public/Pengajar/LoginPengajar")
         Call<APIGuruLogin> login(@Field("username") String username, @Field("password") String password);
+
+        @FormUrlEncoded
+        @Headers("Authorization: "+token)
+        @POST("public/Pengajar/UpdateStatus")
+        Call<APIUpdateStatus> status(@Field("id") String idpengajar);
 
        /* @FormUrlEncoded
         @Headers("Authorization: "+token)

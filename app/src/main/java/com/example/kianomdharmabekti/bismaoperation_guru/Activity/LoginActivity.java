@@ -97,20 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                         String emailmurid=result.getRespon().getEmail();
                         String alamatmurid=result.getRespon().getAlamat();
 
-                        //   String longitudemurid=result.getRespon().getLongitude();
-                        //   String latitudemurid=result.getRespon().getLatitude();
-
-//                        Bundle extras = new Bundle();
-//                        extras.putInt("idmurid",idMurid);
-//                        extras.putString("namadepan",nama);
-//                        extras.putString("namabelakang",namabelakang);
-//                        extras.putString("tempatlahir",tempatlahir);
-//                        extras.putString("tanggallahir",tanggallahir.toString());
-//                        extras.putString("jeniskelamin",jeniskelamin);
-//                        extras.putString("nomorlp",nomortlp);
-//                        extras.putString("emailmurid",emailmurid);
-//                        extras.putString("alamatmurid",alamatmurid);
-
 
 
                         Toast.makeText(getBaseContext(),idMurid+" Login Berhasil sebagai "+username+" Role : Pengajar", Toast.LENGTH_LONG).show();

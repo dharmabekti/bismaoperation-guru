@@ -1,5 +1,6 @@
 package com.example.kianomdharmabekti.bismaoperation_guru.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,16 +22,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.example.kianomdharmabekti.bismaoperation_guru.Preference.SessionManager;
 import com.example.kianomdharmabekti.bismaoperation_guru.R;
+import com.example.kianomdharmabekti.bismaoperation_guru.REST.RestClient;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
 
 /**
  * Created by mery on 5/25/2017.
@@ -44,6 +51,9 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         private TextView floatTitle;
         private ImageView headerBg;
         private Context context;
+        private static final String TAG = "UpdateStatus";
+        private Call<APIUpdateStatus> callUpdateStatus;
+        private TextView username, password;
 
         //测量值
         private float headerHeight;//顶部高度
@@ -78,6 +88,7 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         private int[][] colourBins;
         private volatile boolean loaded = false;
         private int maxY;
+        private MenuItem mi;
 
         TextView txtnama,txtharga, txttlp,txtriwayat, txttgllahir, txtstatus, txtjk, txtnamaDepan, txtEmail, txttempatLahir, txtAlamat, txtId,txtMatapelajaran;
 
@@ -88,40 +99,6 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
             setContentView(R.layout.activity_beranda);
 
             BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
-       /* txtnama=(TextView)findViewById(R.id.txtnama);
-        txttlp=(TextView)findViewById(R.id.txtTelefon);
-        txtriwayat=(TextView)findViewById(R.id.txtRiwayat);
-        txtEmail=(TextView)findViewById(R.id.txtEmail);
-        txtjk=(TextView) findViewById(R.id.txtJenisKelamin);
-        txtAlamat=(TextView) findViewById(R.id.txtAlamat);
-        txttgllahir=(TextView) findViewById(R.id.txtTanggalLahir);
-        txttempatLahir=(TextView) findViewById(R.id.txtTempatLahir);
-        txtMatapelajaran=(TextView) findViewById(R.id.txtMataPelajaran);
-*/
-      /*  Bundle b=getIntent().getExtras();
-        namaDepan=b.getString("nama");
-        tempatlahir=b.getString("tempat_Lahir");
-        tanggallahir =b.getString("tanggal_lahir");
-        jk= b.getString("kelamin");
-        alamat=b.getString("alamat");
-        nomorTlp=b.getString("telepon");
-        rw= b.getString("riwayat");
-        mapel=b.getString("mapel");
-        email=  b.getString("email");
-
-*/
-
-      /*  txtnama.setText(namaDepan);
-        txttlp.setText(nomorTlp);
-        txtriwayat.setText(rw);
-        txtjk.setText(jk);
-        txtEmail.setText(email);
-        txttgllahir.setText(tanggallahir);
-        txtAlamat.setText(alamat);
-        txtMatapelajaran.setText(mapel);
-        txttempatLahir.setText(tempatlahir);
-*/
             sessions=new SessionManager(this);
 
             initMeasure();
@@ -164,6 +141,14 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
                 // Code you want run when activity is clicked
                 sessions.logoutUser();
                 return  true;
+            case R.id.action_status:
+                // Code you want run when activity is clicked
+                updateStatus();
+//                item.setTitle("Status: " + sessions.getUserDetails().get(SessionManager.KEY_STATUS));
+                finish();
+                sessions=new SessionManager(this);
+                startActivity(getIntent());
+                return  true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -200,7 +185,7 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
             data.add("Biaya per Jam        : Rp. "+sessions.getUserDetails().get(SessionManager.KEY_HARGA) + ",-");
             data.add("Username        : "+sessions.getUserDetails().get(SessionManager.KEY_USERNAME));
             data.add("Saldo        : Rp. "+sessions.getUserDetails().get(SessionManager.KEY_BILLING) + ",-");
-//            data.add("Profil        : "+sessions.getUserDetails().get(SessionManager.KEY_PROFIL));
+            data.add("Status        : "+sessions.getUserDetails().get(SessionManager.KEY_STATUS));
             data.add("");
             data.add("");
             data.add("");
@@ -302,4 +287,45 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         return -top + firstVisiblePosition * c.getHeight() + headerHeight;
     }
 
+
+    public void updateStatus() {
+        Log.d(TAG, "LoginActivity");
+        final ProgressDialog progressDialog = new ProgressDialog(BerandaActivity.this,R.style.ProgressDialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Mengubah Status...");
+        progressDialog.show();
+
+        // TODO: Implement your own authentication logic here.
+
+        service = RestClient.getClient();
+        callUpdateStatus = service.status(sessions.getUserDetails().get(SessionManager.KEY_USERID));
+
+        callUpdateStatus.enqueue(new Callback<APIUpdateStatus>() {
+            @Override
+            public void onResponse(Response<APIUpdateStatus> response) {
+                Log.d("UpdateStatus", "Status Code = " + response.code());
+                if (response.isSuccess()) {
+                    // request successful (status code 200, 201)
+                    APIUpdateStatus result = response.body();
+                    Log.d("UpdateStatus", "response = " + new Gson().toJson(result));
+                    if (result != null) {
+                        Toast.makeText(getBaseContext(), "Berhasil Mengubah Status", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+                    }
+
+                } else {
+                    // response received but request not successful (like 400,401,403 etc)
+                    //Handle errors
+                    Toast.makeText(getBaseContext(), "Gagal Mengubah Status", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getBaseContext(), "Gagal Mengubah Status", Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+            }
+        });
+    }
 }

@@ -45,6 +45,7 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_BILLING = "billing";
+    public static final String KEY_STATUS = "status";
     public static final String KEY_PROFIL = "profil";
     //END USER-DATA
 
@@ -76,6 +77,7 @@ public class SessionManager {
         editor.putString(KEY_EMAIL, user.getRespon().getEmail());
         editor.putString(KEY_USERNAME, user.getRespon().getUsername());
         editor.putString(KEY_BILLING, user.getRespon().getBilling());
+        editor.putString(KEY_STATUS, user.getRespon().getStatus());
         editor.putString(KEY_PROFIL, user.getRespon().getProfil());
 
         // commit changes
@@ -124,6 +126,7 @@ public class SessionManager {
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_USERNAME, pref.getString(KEY_USERNAME, null));
         user.put(KEY_BILLING, pref.getString(KEY_BILLING, null));
+        user.put(KEY_STATUS, pref.getString(KEY_STATUS, null));
         user.put(KEY_PROFIL, pref.getString(KEY_PROFIL, null));
         // return user
         return user;
