@@ -146,14 +146,14 @@ public class LoginActivity extends AppCompatActivity {
                     //Handle errors
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Login Gagal", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Login Gagal1", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getBaseContext(), "Login Gagal", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Login Gagal2", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
         });

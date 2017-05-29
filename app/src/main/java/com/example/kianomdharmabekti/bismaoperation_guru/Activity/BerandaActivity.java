@@ -1,5 +1,6 @@
 package com.example.kianomdharmabekti.bismaoperation_guru.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
 import com.example.kianomdharmabekti.bismaoperation_guru.Preference.SessionManager;
 import com.example.kianomdharmabekti.bismaoperation_guru.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,8 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         private Toolbar toolbar;
         private TextView floatTitle;
         private ImageView headerBg;
+        private Context context;
+
         //测量值
         private float headerHeight;//顶部高度
         private float minHeaderHeight;//顶部最低高度，即Bar的高度
@@ -150,6 +155,20 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
                         }
                     });
         }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // Code you want run when activity is clicked
+                sessions.logoutUser();
+                return  true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void initMeasure() {
         headerHeight = getResources().getDimension(R.dimen.header_height);
         minHeaderHeight = getResources().getDimension(R.dimen.abc_action_bar_default_height_material);
@@ -169,15 +188,19 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
     private void initListView() {
         List<String> data = new ArrayList<>();
         for (int i = 0; i < 1; i++) {
-            data.add("Nama                       :"+sessions.getUserDetails().get(SessionManager.KEY_NAMA_DEPAN));
-            data.add("Tempatlahir             :"+tempatlahir);
-            data.add("Tanggal Lahir           :"+tanggallahir);
-            data.add("Jenis Kelamin          :"+jk);
-            data.add("Alamat                      :"+alamat);
-            data.add("Nomor Telepon        :"+nomorTlp);
-            data.add("Riwayat Pendidikan : " +rw);
-            data.add("Mata Pelajaran        :"+mapel);
-            data.add("Email                        :"+email);
+            data.add("Nama                       : " +sessions.getUserDetails().get(SessionManager.KEY_NAMA_DEPAN));
+            data.add("Tempatlahir             : " +sessions.getUserDetails().get(SessionManager.KEY_TEMPAT_LAHIR));
+            data.add("Tanggal Lahir           : " +sessions.getUserDetails().get(SessionManager.KEY_TANGGAL_LAHIR));
+            data.add("Jenis Kelamin          : " +sessions.getUserDetails().get(SessionManager.KEY_KELAMIN));
+            data.add("Alamat                      : \n" +sessions.getUserDetails().get(SessionManager.KEY_ALAMAT));
+            data.add("Nomor Telepon        : " +sessions.getUserDetails().get(SessionManager.KEY_TELEPON));
+            data.add("Riwayat Pendidikan : "  +sessions.getUserDetails().get(SessionManager.KEY_RIWAYAT));
+            data.add("Mata Pelajaran        : \n"+sessions.getUserDetails().get(SessionManager.KEY_MAPEL));
+            data.add("Email                        : "+sessions.getUserDetails().get(SessionManager.KEY_EMAIL));
+            data.add("Biaya per Jam        : Rp. "+sessions.getUserDetails().get(SessionManager.KEY_HARGA) + ",-");
+            data.add("Username        : "+sessions.getUserDetails().get(SessionManager.KEY_USERNAME));
+            data.add("Saldo        : Rp. "+sessions.getUserDetails().get(SessionManager.KEY_BILLING) + ",-");
+//            data.add("Profil        : "+sessions.getUserDetails().get(SessionManager.KEY_PROFIL));
             data.add("");
             data.add("");
             data.add("");
@@ -193,6 +216,9 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
     private void initListViewHeader() {
         View headerContainer = LayoutInflater.from(this).inflate(R.layout.header, listView, false);
         headerBg = (ImageView) headerContainer.findViewById(R.id.img_header_bg);
+        Log.d("LoginActivity", "Status Code1 = " + sessions.getUserDetails().get(SessionManager.KEY_PROFIL));
+        Picasso.with(this).load(sessions.getUserDetails().get(SessionManager.KEY_PROFIL)).into(headerBg);
+
 
         listView.addHeaderView(headerContainer);
     }

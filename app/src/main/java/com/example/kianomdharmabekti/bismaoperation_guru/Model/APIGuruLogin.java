@@ -4,6 +4,14 @@ package com.example.kianomdharmabekti.bismaoperation_guru.Model;
  * Created by mery on 5/25/2017.
  */
 public class APIGuruLogin {
+
+    /**
+     * status : true
+     * status_code : 200
+     * message : Login Berhasil
+     * respon : {"id":1,"nama_depan":"Dharma","nama_belakang":"Bekti","tempat_lahir":"Puworejo","alamat":"Jalan Janti 65 Banguntapan, Bantul, DIY","telepon":"0857430811","kelamin":"Pria","tanggal_lahir":"1996-06-16","status":"On","email":"dharmabekti@gmail.com","longitude":null,"latitude":null,"harga":"70000","billing":"140000","riwayat_pendidikan":"SMA","mata_pelajaran":"Matematika SD, Matematika SMP, Matematika SMA","username":"dharma","profil":"http://bismaoperation.id/uploads/Pengajar/Profil/Dharma_dharma.jpg"}
+     */
+
     private boolean status;
     private int status_code;
     private String message;
@@ -43,22 +51,24 @@ public class APIGuruLogin {
 
     public static class ResponBean {
         /**
-         * id : 5
+         * id : 1
          * nama_depan : Dharma
          * nama_belakang : Bekti
-         * tempat_lahir : Purworejo
-         * alamat : Jrakah
-         * telepon : 085740126916
+         * tempat_lahir : Puworejo
+         * alamat : Jalan Janti 65 Banguntapan, Bantul, DIY
+         * telepon : 0857430811
          * kelamin : Pria
          * tanggal_lahir : 1996-06-16
          * status : On
          * email : dharmabekti@gmail.com
          * longitude : null
          * latitude : null
-         * harga : 50000
-         * billing : 0
+         * harga : 70000
+         * billing : 140000
          * riwayat_pendidikan : SMA
          * mata_pelajaran : Matematika SD, Matematika SMP, Matematika SMA
+         * username : dharma
+         * profil : http://bismaoperation.id/uploads/Pengajar/Profil/Dharma_dharma.jpg
          */
 
         private int id;
@@ -77,6 +87,8 @@ public class APIGuruLogin {
         private String billing;
         private String riwayat_pendidikan;
         private String mata_pelajaran;
+        private String username;
+        private String profil;
 
         public int getId() {
             return id;
@@ -204,6 +216,22 @@ public class APIGuruLogin {
 
         public void setMata_pelajaran(String mata_pelajaran) {
             this.mata_pelajaran = mata_pelajaran;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getProfil() {
+            return profil;
+        }
+
+        public void setProfil(String profil) {
+            this.profil = profil;
         }
     }
 }

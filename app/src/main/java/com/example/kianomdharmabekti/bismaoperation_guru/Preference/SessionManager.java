@@ -36,10 +36,15 @@ public class SessionManager {
     public static final String KEY_NAMA_BELAKANG = "nama_belakang";
     public static final String KEY_TEMPAT_LAHIR = "tampat_lahir";
     public static final String KEY_TANGGAL_LAHIR = "tanggal_lahir";
-    public static final String KEY_TELEPON = "telepn";
+    public static final String KEY_TELEPON = "telepon";
     public static final String KEY_KELAMIN = "kelamin";
     public static final String KEY_ALAMAT = "alamat";
+    public static final String KEY_RIWAYAT = "riwayat_pendidikan";
+    public static final String KEY_MAPEL = "mata_pelajaran";
+    public static final String KEY_HARGA = "harga";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_BILLING = "billing";
     public static final String KEY_PROFIL = "profil";
     //END USER-DATA
 
@@ -64,9 +69,14 @@ public class SessionManager {
         editor.putString(KEY_TANGGAL_LAHIR, user.getRespon().getTanggal_lahir());
         editor.putString(KEY_TELEPON, user.getRespon().getTelepon());
         editor.putString(KEY_KELAMIN, user.getRespon().getKelamin());
+        editor.putString(KEY_RIWAYAT, user.getRespon().getRiwayat_pendidikan());
+        editor.putString(KEY_MAPEL, user.getRespon().getMata_pelajaran());
+        editor.putString(KEY_HARGA, user.getRespon().getHarga());
         editor.putString(KEY_ALAMAT, user.getRespon().getAlamat());
         editor.putString(KEY_EMAIL, user.getRespon().getEmail());
-        //  editor.putString(KEY_PROFIL, user.getRespon().getProfil());
+        editor.putString(KEY_USERNAME, user.getRespon().getUsername());
+        editor.putString(KEY_BILLING, user.getRespon().getBilling());
+        editor.putString(KEY_PROFIL, user.getRespon().getProfil());
 
         // commit changes
         editor.commit();
@@ -108,7 +118,12 @@ public class SessionManager {
         user.put(KEY_TELEPON, pref.getString(KEY_TELEPON, null));
         user.put(KEY_KELAMIN, pref.getString(KEY_KELAMIN, null));
         user.put(KEY_ALAMAT, pref.getString(KEY_ALAMAT, null));
+        user.put(KEY_RIWAYAT, pref.getString(KEY_RIWAYAT, null));
+        user.put(KEY_MAPEL, pref.getString(KEY_MAPEL, null));
+        user.put(KEY_HARGA, pref.getString(KEY_HARGA, null));
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(KEY_USERNAME, pref.getString(KEY_USERNAME, null));
+        user.put(KEY_BILLING, pref.getString(KEY_BILLING, null));
         user.put(KEY_PROFIL, pref.getString(KEY_PROFIL, null));
         // return user
         return user;
