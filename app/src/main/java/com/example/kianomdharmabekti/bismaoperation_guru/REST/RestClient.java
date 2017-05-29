@@ -28,7 +28,7 @@ public class RestClient {
 
 //    private static String baseUrl = "http://bisma.bluecrawler.com" ;
     private static String baseUrl = "http://bismaapi.bismaoperation.id" ;
-    private static final String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYmlzbWFhcGkuYmlzbWFvcGVyYXRpb24uaWQvcHVibGljL2F1dGgvbG9naW4iLCJpYXQiOjE0OTU2MzgxMjIsImV4cCI6MTUyNjc0MjEyMiwibmJmIjoxNDk1NjM4MTIyLCJqdGkiOiJSTFdrR0h2aElpemZuSnRmIiwic3ViIjoyMH0.hoeTI_g9YalUHGKbD0o7ABzNGEGn6aHzTaauMG00Lws";
+    private static final String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LmFwaS5iaXNtYW9wZXJhdGlvbi5pZC9wdWJsaWMvYXV0aC9sb2dpbiIsImlhdCI6MTQ5NTc0MzQ5MiwiZXhwIjoxNTI2ODQ3NDkyLCJuYmYiOjE0OTU3NDM0OTIsImp0aSI6InZBSWVCdHFGNnA4YlNZRlciLCJzdWIiOjE0fQ.A3IbdRAoJy7lsYzTWhn4jKjvQ0-g1T-B5ij7qivGL9Q";
 
 
     public static GitApiInterface getClient(){
