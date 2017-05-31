@@ -1,9 +1,11 @@
 package com.example.kianomdharmabekti.bismaoperation_guru.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by mery on 5/25/2017.
  */
-public class APIGuruLogin {
+public class APIGuruLogin implements Serializable {
 
     /**
      * status : true

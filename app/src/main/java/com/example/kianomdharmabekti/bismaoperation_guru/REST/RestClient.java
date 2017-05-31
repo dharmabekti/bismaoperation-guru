@@ -3,7 +3,11 @@ package com.example.kianomdharmabekti.bismaoperation_guru.REST;
 import com.example.kianomdharmabekti.bismaoperation_guru.HELPER.ToStringConverter;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruData;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
+
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
+
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
+
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -73,8 +77,13 @@ public class RestClient {
         Call<APIUpdateStatus> status(@Field("id") String idpengajar);
 
         @Headers("Authorization: "+token)
+        @GET("/public/Order/Riwayat")
+        Call<APIRiwayat> riwayat(@Query("id_pengajar")int idpengajar);
+      
+        @Headers("Authorization: "+token)
         @GET("/public/Order/ListMurid")
         Call<APIOrder> orderdetil(@Query("id_pengajar")int idpengajar);
+
 
 
        /* @FormUrlEncoded

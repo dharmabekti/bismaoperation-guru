@@ -122,7 +122,7 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
                                     break;
 
                                 case R.id.action_music:
-                                    Intent intent = new Intent(BerandaActivity.this, LoginActivity.class);
+                                    Intent intent = new Intent(BerandaActivity.this, RiwayatActivity.class);
                                     startActivity(intent);
 
                                     break;
