@@ -2,8 +2,16 @@ package com.example.kianomdharmabekti.bismaoperation_guru.REST;
 
 import com.example.kianomdharmabekti.bismaoperation_guru.HELPER.ToStringConverter;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
+<<<<<<< HEAD
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
+=======
+
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
+
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
+
+>>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -75,11 +83,20 @@ public class RestClient {
         @Headers("Authorization: "+token)
         @GET("/public/Order/Riwayat")
         Call<APIRiwayat> riwayat(@Query("id_pengajar")int idpengajar);
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
         @Headers("Authorization: "+token)
         @GET("/public/Order/ListMurid")
         Call<APIOrder> orderdetil(@Query("id_pengajar")int idpengajar);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
        /* @FormUrlEncoded
         @Headers("Authorization: "+token)
         @POST("/public/Murid/RegisterMurid")

@@ -27,6 +27,7 @@
         <activity android:name=".Activity.RiwayatActivity" />
         <activity android:name=".Activity.DetilRiwayatActivity"></activity>
         <activity android:name=".Activity.DaftarOrderActivity"></activity>
+
     </application>
 
 </manifest>
