@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +40,7 @@ public class DaftarOrderActivity extends AppCompatActivity {
     private ArrayList<APIOrder.ResponBean> GuruItems = new ArrayList<APIOrder.ResponBean>();
     private Intent intent;
     SessionManager sessions;
-
+    private SwipeRefreshLayout swipeContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,24 @@ public class DaftarOrderActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContaineror);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchData();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
     }
 
@@ -121,6 +140,8 @@ public class DaftarOrderActivity extends AppCompatActivity {
                             for (APIOrder.ResponBean Responitem : ResponseItems) {
                                 GuruItems.add(Responitem);
                                 adapter.notifyDataSetChanged();
+                                swipeContainer.setRefreshing(false);
+
                             }
                         }
                         progressDialog.dismiss();
@@ -131,6 +152,7 @@ public class DaftarOrderActivity extends AppCompatActivity {
                     //Handle errors
                     Toast.makeText(getApplicationContext(), "Gagal Ambil Data", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
+                    swipeContainer.setRefreshing(false);
 
                 }
             }
@@ -139,6 +161,7 @@ public class DaftarOrderActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Koneksi Ke Internet Gagal", Toast.LENGTH_SHORT).show();
                 Log.d("ListGuruFetching", t.getMessage()+t.toString());
                 progressDialog.dismiss();
+                swipeContainer.setRefreshing(false);
 
             }
         });
