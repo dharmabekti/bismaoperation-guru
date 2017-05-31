@@ -3,6 +3,7 @@ package com.example.kianomdharmabekti.bismaoperation_guru.REST;
 import com.example.kianomdharmabekti.bismaoperation_guru.HELPER.ToStringConverter;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruData;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,6 +21,7 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Headers;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 /**
  * Created by Ki Anom Dharma Bekti on 5/24/2017.
@@ -69,6 +71,10 @@ public class RestClient {
         @Headers("Authorization: "+token)
         @POST("public/Pengajar/UpdateStatus")
         Call<APIUpdateStatus> status(@Field("id") String idpengajar);
+
+        @Headers("Authorization: "+token)
+        @GET("/public/Order/Riwayat")
+        Call<APIRiwayat> riwayat(@Query("id_pengajar")int idpengajar);
 
        /* @FormUrlEncoded
         @Headers("Authorization: "+token)
