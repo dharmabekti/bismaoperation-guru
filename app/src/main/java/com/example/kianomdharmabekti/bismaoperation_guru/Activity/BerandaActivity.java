@@ -117,7 +117,7 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
 
                                 case R.id.action_schedules:
 
-                                    Intent inten = new Intent(BerandaActivity.this, OrderActivity.class);
+                                    Intent inten = new Intent(BerandaActivity.this, DaftarOrderActivity.class);
                                     startActivity(inten);
                                     break;
 
