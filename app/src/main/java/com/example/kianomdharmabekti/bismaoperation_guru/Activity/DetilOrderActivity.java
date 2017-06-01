@@ -117,7 +117,7 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
            // btnbayar.setEnabled(true);
             btnbayar.setBackground(this.getResources().getDrawable(R.drawable.verified));
             btnbayar.setText("Verified");
-           txttotaljam.setVisibility(View.INVISIBLE);
+            txttotaljam.setVisibility(View.INVISIBLE);
         }else {
            btnbayar.setBackground(this.getResources().getDrawable(R.drawable.verified));
            btnbayar.setText("Verifikasi");
@@ -151,7 +151,6 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
 
             if(btnbayar.getText().toString().equalsIgnoreCase("verified")){
                 Toast.makeText(getBaseContext(), "Murid sudah di Verifikasi", Toast.LENGTH_LONG).show();
-
             }
             else if(txttotaljam.getText().toString().equalsIgnoreCase(""))
             {

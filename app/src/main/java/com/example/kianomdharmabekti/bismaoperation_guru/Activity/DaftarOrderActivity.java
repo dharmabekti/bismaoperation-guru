@@ -69,8 +69,8 @@ public class DaftarOrderActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorites:
-                                //profil
-
+                                Intent inten = new Intent(DaftarOrderActivity.this, BerandaActivity.class);
+                                startActivity(inten);
                                 break;
 
                             case R.id.action_schedules:
@@ -79,9 +79,8 @@ public class DaftarOrderActivity extends AppCompatActivity {
 
                             case R.id.action_music:
                                 //riwayat
-//                                Intent intent = new Intent(DaftarOrderActivity.this, LoginActivity.class);
-//                                startActivity(intent);
-
+                                Intent intent = new Intent(DaftarOrderActivity.this, RiwayatActivity.class);
+                                startActivity(intent);
                                 break;
 
                         }

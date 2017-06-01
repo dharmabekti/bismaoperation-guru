@@ -22,6 +22,9 @@ public class RiwayatHolder extends RecyclerView.ViewHolder{
     TextView tv_tempatlahir;
     TextView tv_jeniskelamin;
     TextView tv_namabelakang;
+    TextView tv_tanggalorder;
+    TextView tv_jam;
+    TextView tv_pembayaran;
     RelativeLayout item;
     ImageView foto;
     TextView foto2;
@@ -40,6 +43,9 @@ public class RiwayatHolder extends RecyclerView.ViewHolder{
         this.tv_tempatlahir=(TextView) view.findViewById(R.id.tv_tempatlahir);
         this.tv_jeniskelamin=(TextView)view.findViewById(R.id.tv_jeniskelamin);
         this.tv_namabelakang=(TextView) view.findViewById(R.id.tv_namabelakang);
+        this.tv_tanggalorder=(TextView) view.findViewById(R.id.tv_tanggalorderor);
+        this.tv_jam=(TextView) view.findViewById(R.id.tv_jamor);
+        this.tv_pembayaran=(TextView) view.findViewById(R.id.tv_pembayaran);
         this.item = (RelativeLayout) view.findViewById(R.id.itemGuru);
         this.foto = (ImageView) view.findViewById(R.id.icon);
         this.foto2 = (TextView) view.findViewById(R.id.tv_temp);

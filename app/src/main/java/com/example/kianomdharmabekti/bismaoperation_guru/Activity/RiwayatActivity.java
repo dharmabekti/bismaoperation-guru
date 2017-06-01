@@ -33,7 +33,7 @@ public class RiwayatActivity extends AppCompatActivity {
     private Call<APIRiwayat> callGuru;
     private RestClient.GitApiInterface service;
 
-    private ArrayList<APIRiwayat.ResponBean.IdPengajarBean> GuruItems = new ArrayList<APIRiwayat.ResponBean.IdPengajarBean>();
+    private ArrayList<APIRiwayat.ResponBean> GuruItems = new ArrayList<APIRiwayat.ResponBean>();
     private Integer id;
     private String namadepan;
     private String namabelakang;
@@ -43,7 +43,7 @@ public class RiwayatActivity extends AppCompatActivity {
     private String nomortlp;
     private String emailmurid;
     private String alamatmurid;
-    private  Intent intent;
+    private Intent intent;
     Bundle extras;
     SessionManager sessions;
 
@@ -55,10 +55,12 @@ public class RiwayatActivity extends AppCompatActivity {
         rvView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         rvView.setLayoutManager(layoutManager);
-        adapter = new RecycleViewRiwayat(RiwayatActivity.this, GuruItems);
+        rvView.setLayoutManager(layoutManager);
+        adapter = new RecycleRiwayatAdapter(RiwayatActivity.this, GuruItems);
         rvView.setAdapter(adapter);
         sessions = new SessionManager(this);
         fetchData();
+
         Bundle b=getIntent().getExtras();
 
         Log.d("LoginActivity", "Status Code = " + sessions.getUserDetails().get(SessionManager.KEY_EMAIL));
@@ -72,40 +74,16 @@ public class RiwayatActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorites:
-//                            intent = new Intent(ListGuruActivity.this, Testing.class);
-//                            startActivity(intent);
+                                Intent inten = new Intent(RiwayatActivity.this, BerandaActivity.class);
+                                startActivity(inten);
                                 break;
 
                             case R.id.action_schedules:
-                                //       extras = new Bundle();
-//                                extras.putInt("idmurid",id);
-//                                extras.putString("namadepan",namadepan);
-//                                extras.putString("namabelakang",namabelakang);
-//                                extras.putString("tempatlahir",tempatlahir);
-//                                extras.putString("tanggallahir",tanggallahir);
-//                                extras.putString("jeniskelamin",jeniskelamin);
-//                                extras.putString("nomorlp",nomortlp);
-//                                extras.putString("emailmurid",emailmurid);
-//                                extras.putString("alamatmurid",alamatmurid);
-                                intent = new Intent(RiwayatActivity.this, RiwayatActivity.class);
-                                // intent.putExtras(extras);
+                                Intent intent = new Intent(RiwayatActivity.this, DaftarOrderActivity.class);
                                 startActivity(intent);
                                 break;
 
                             case R.id.action_music:
-                                extras = new Bundle();
-//                                extras.putInt("idmurid",id);
-//                                extras.putString("namadepan",namadepan);
-//                                extras.putString("namabelakang",namabelakang);
-//                                extras.putString("tempatlahir",tempatlahir);
-//                                extras.putString("tanggallahir",tanggallahir);
-//                                extras.putString("jeniskelamin",jeniskelamin);
-//                                extras.putString("nomorlp",nomortlp);
-//                                extras.putString("emailmurid",emailmurid);
-//                                extras.putString("alamatmurid",alamatmurid);
-                                intent = new Intent(RiwayatActivity.this, RiwayatActivity.class);
-                                intent.putExtras(extras);
-                                startActivity(intent);
                                 break;
 
                         }
@@ -138,11 +116,11 @@ public class RiwayatActivity extends AppCompatActivity {
 
                         GuruItems.clear();
 
-                        List<APIRiwayat.ResponBean.IdPengajarBean> ResponseItems = response.body().getRespon().get(0).getId_pengajar();
+                        List<APIRiwayat.ResponBean> ResponseItems = response.body().getRespon();
 
                         if(ResponseItems!=null)
                         {
-                            for (APIRiwayat.ResponBean.IdPengajarBean Responitem : ResponseItems) {
+                            for (APIRiwayat.ResponBean Responitem : ResponseItems) {
                                 GuruItems.add(Responitem);
                                 adapter.notifyDataSetChanged();
                             }
