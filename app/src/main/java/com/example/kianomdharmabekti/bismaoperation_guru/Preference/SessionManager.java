@@ -44,6 +44,7 @@ public class SessionManager {
     public static final String KEY_HARGA = "harga";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_USERNAME = "username";
+    public static final String KEY_PASSWORD = "password";
     public static final String KEY_BILLING = "billing";
     public static final String KEY_STATUS = "status";
     public static final String KEY_PROFIL = "profil";
@@ -59,7 +60,7 @@ public class SessionManager {
     /**
      * Create login session
      */
-    public void createLoginSession(APIGuruLogin user) {
+    public void createLoginSession(APIGuruLogin user, String password) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         // Storing  in pref
@@ -79,6 +80,7 @@ public class SessionManager {
         editor.putString(KEY_BILLING, user.getRespon().getBilling());
         editor.putString(KEY_STATUS, user.getRespon().getStatus());
         editor.putString(KEY_PROFIL, user.getRespon().getProfil());
+        editor.putString(KEY_PASSWORD, password);
 
         // commit changes
         editor.commit();

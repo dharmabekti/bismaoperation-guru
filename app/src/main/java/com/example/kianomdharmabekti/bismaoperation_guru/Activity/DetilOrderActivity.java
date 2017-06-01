@@ -107,7 +107,7 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
       //  harga = b.getString("harga");
         foto = b.getString("profil");
       //  matapelajaran = b.getString("matapelajaran");
-     //   jambelajar=b.getString("jambelajar");
+        jambelajar=b.getString("jambelajar");
     //    totalharga=b.getString("totalharga");
         statusorder=b.getString("statusorder");
 
@@ -118,6 +118,7 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
             btnbayar.setBackground(this.getResources().getDrawable(R.drawable.verified));
             btnbayar.setText("Verified");
             txttotaljam.setVisibility(View.INVISIBLE);
+
         }else {
            btnbayar.setBackground(this.getResources().getDrawable(R.drawable.verified));
            btnbayar.setText("Verifikasi");
@@ -138,9 +139,15 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
 //        txtMatapelajaran.setText(matapelajaran);
      //   txtharga.setText(harga);
       //  txtTotalHarga.setText(totalharga);
-      //  txttotaljam.setText(jambelajar);
+        txttotaljam.setText(jambelajar);
         txtTanggalOrder.setText(tanggalorder);
         Picasso.with(this).load(foto).into(profil);
+
+
+//        if(tanggalorder.toString().equalsIgnoreCase(""))
+//        {
+//            txtTanggalOrder.setVisibility(View.INVISIBLE);
+//        }
 
     }
 
@@ -162,7 +169,7 @@ public class DetilOrderActivity extends AppCompatActivity  implements View.OnCli
 
                 final ProgressDialog progressDialog = new ProgressDialog(DetilOrderActivity.this, R.style.ProgressDialog);
                 progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Membayar Guru..");
+                progressDialog.setMessage("Verifikasi Waktu Mengajar...");
                 progressDialog.show();
 
                 // TODO: Implement your own signup logic here.

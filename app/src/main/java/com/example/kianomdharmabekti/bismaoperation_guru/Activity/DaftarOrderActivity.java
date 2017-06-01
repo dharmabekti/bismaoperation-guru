@@ -1,6 +1,9 @@
 package com.example.kianomdharmabekti.bismaoperation_guru.Activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -136,6 +139,18 @@ public class DaftarOrderActivity extends AppCompatActivity {
 
                         if(ResponseItems!=null)
                         {
+                            String tittle = "Pesan Baru";
+                            String subject = "Bisma Operation";
+                            String body = "Ada order Baru";
+
+                            NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                            Notification notify=new Notification.Builder
+                                    (getApplicationContext()).setContentTitle(tittle).setContentText(body).
+                                    setContentTitle(subject).setSmallIcon(R.drawable.bisma).build();
+
+                            notify.flags |= Notification.FLAG_AUTO_CANCEL;
+                            notif.notify(0, notify);
+
                             for (APIOrder.ResponBean Responitem : ResponseItems) {
                                 GuruItems.add(Responitem);
                                 adapter.notifyDataSetChanged();

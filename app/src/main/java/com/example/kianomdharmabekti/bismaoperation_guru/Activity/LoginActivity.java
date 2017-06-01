@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                        Toast.makeText(getBaseContext(),idMurid+" Login Berhasil sebagai "+username+" Role : Pengajar", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getBaseContext(),idMurid+" Login Berhasil sebagai "+username+" Role : Pengajar", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), BerandaActivity.class);
                         //   intent.putExtras(extras);
                         startActivity(intent);
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         Log.d("LoginActivity", "response = " + new Gson().toJson(result));
-                        sessions.createLoginSession(result);
+                        sessions.createLoginSession(result, password);
                         Toast.makeText(getBaseContext(),result.getRespon().getId()+" Login Berhasil sebagai "+username+" Role : Pengajar", Toast.LENGTH_LONG).show();
                         intent = new Intent(getApplicationContext(), BerandaActivity.class);
                         startActivity(intent);
@@ -132,14 +132,14 @@ public class LoginActivity extends AppCompatActivity {
                     //Handle errors
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Login Gagal1", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Login Gagal", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getBaseContext(), "Login Gagal2", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Login Gagal", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
         });

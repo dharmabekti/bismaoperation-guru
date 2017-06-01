@@ -228,6 +228,7 @@
         android:visibility="invisible"
         android:layout_alignTop="@+id/tv_titleo"
         android:layout_toEndOf="@+id/icono" />
+
     <TextView
         android:id="@+id/tv_statusorder"
         android:layout_width="fill_parent"

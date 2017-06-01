@@ -29,6 +29,7 @@ import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
 import com.example.kianomdharmabekti.bismaoperation_guru.Preference.SessionManager;
 import com.example.kianomdharmabekti.bismaoperation_guru.R;
 import com.example.kianomdharmabekti.bismaoperation_guru.REST.RestClient;
+import com.example.kianomdharmabekti.bismaoperation_guru.SplashActivity;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +54,7 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         private Context context;
         private static final String TAG = "UpdateStatus";
         private Call<APIUpdateStatus> callUpdateStatus;
+        private Call<APIGuruLogin> callLogin;
         private TextView username, password;
 
         //测量值
@@ -91,9 +93,10 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
         private MenuItem mi;
 
         TextView txtnama,txtharga, txttlp,txtriwayat, txttgllahir, txtstatus, txtjk, txtnamaDepan, txtEmail, txttempatLahir, txtAlamat, txtId,txtMatapelajaran;
+        String pass;
 
 
-        @Override
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_beranda);
@@ -309,6 +312,9 @@ public class BerandaActivity extends ActionBarActivity implements AbsListView.On
                     APIUpdateStatus result = response.body();
                     Log.d("UpdateStatus", "response = " + new Gson().toJson(result));
                     if (result != null) {
+//                        finish();
+//                        Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
+//                        startActivity(intent);
                         Toast.makeText(getBaseContext(), "Berhasil Mengubah Status", Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }
