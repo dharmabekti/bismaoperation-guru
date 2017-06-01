@@ -102,9 +102,9 @@ public class RecycleOrderAdapater extends RecyclerView.Adapter<OrderHolder>{
 //                extras.putString("profil",mainHolder.foto.toString());
 
                 Log.d("LoginActivity", "response >>>= " + mainHolder.foto2.toString());
-               // Intent intent = new Intent(context, DetilGuruOrderWithPriceActivity.class);
-                //intent.putExtras(extras);
-              //  context.startActivity(intent);
+                Intent intent = new Intent(context, DetilOrderActivity.class);
+                intent.putExtras(extras);
+                context.startActivity(intent);
             }
         });
 

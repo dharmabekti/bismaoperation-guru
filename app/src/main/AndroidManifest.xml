@@ -24,9 +24,17 @@
         </activity>
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.BerandaActivity" />
+
+        
+        <activity android:name=".Activity.RiwayatActivity" />
+        <activity android:name=".Activity.PopUpOrderActivity" />
+        <activity android:name=".Activity.DetilRiwayatActivity" />
+        <activity android:name=".Activity.DetilOrderActivity"></activity>
+
         <activity android:name=".Activity.RiwayatActivity" />
         <activity android:name=".Activity.DetilRiwayatActivity"></activity>
         <activity android:name=".Activity.DaftarOrderActivity"></activity>
+
 
     </application>
 

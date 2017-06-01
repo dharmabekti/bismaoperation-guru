@@ -1,18 +1,23 @@
 package com.example.kianomdharmabekti.bismaoperation_guru.REST;
 
 import com.example.kianomdharmabekti.bismaoperation_guru.HELPER.ToStringConverter;
+
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APICancelOrder;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruData;
+
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIGuruLogin;
-<<<<<<< HEAD
-import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
-import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
-=======
 
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
+
+
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIRiwayat;
 
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIOrder;
 
->>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
+
 import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIUpdateStatus;
+import com.example.kianomdharmabekti.bismaoperation_guru.Model.APIVerifikasi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Interceptor;
@@ -24,6 +29,7 @@ import java.io.IOException;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.http.DELETE;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -36,7 +42,7 @@ import retrofit.http.Query;
  */
 public class RestClient {
     private static GitApiInterface gitApiInterface;
-
+   // private static String baseUrl = "http://api.bismaoperation.id" ;
 //    private static String baseUrl = "http://bisma.bluecrawler.com" ;
     private static String baseUrl = "http://bismaapi.bismaoperation.id" ;
     private static final String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LmFwaS5iaXNtYW9wZXJhdGlvbi5pZC9wdWJsaWMvYXV0aC9sb2dpbiIsImlhdCI6MTQ5NTc0MzQ5MiwiZXhwIjoxNTI2ODQ3NDkyLCJuYmYiOjE0OTU3NDM0OTIsImp0aSI6InZBSWVCdHFGNnA4YlNZRlciLCJzdWIiOjE0fQ.A3IbdRAoJy7lsYzTWhn4jKjvQ0-g1T-B5ij7qivGL9Q";
@@ -83,20 +89,25 @@ public class RestClient {
         @Headers("Authorization: "+token)
         @GET("/public/Order/Riwayat")
         Call<APIRiwayat> riwayat(@Query("id_pengajar")int idpengajar);
-<<<<<<< HEAD
 
-=======
       
->>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
+
         @Headers("Authorization: "+token)
         @GET("/public/Order/ListMurid")
         Call<APIOrder> orderdetil(@Query("id_pengajar")int idpengajar);
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 46323b3cd745a6287649d9fff5e4a7e5a0559d20
+        @FormUrlEncoded
+        @Headers("Authorization: "+token)
+        @POST("public/Order/Verifikasi")
+        Call<APIVerifikasi> verif(@Field("id_order") String idorder,@Field("jam") String jam);
+
+        @Headers("Authorization: "+token)
+        @DELETE("public/Order/CancelOrder")
+        Call<APICancelOrder> batal(@Query("id") String idorder);
+
+
        /* @FormUrlEncoded
         @Headers("Authorization: "+token)
         @POST("/public/Murid/RegisterMurid")
